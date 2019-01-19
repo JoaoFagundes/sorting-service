@@ -1,22 +1,33 @@
-from OrderingException import OrderingException
+from operator import attrgetter
+from sorting.OrderingException import OrderingException
 
 class SortingService:
 
-    def sort(self, books, ordering_params):
-        for param in ordering_params:
-            attribute, direction = param.split('_')
-            print(attribute)
-            print(self.get_param_index(attribute))
-            print(direction)
+    _valid_attributes = ['title', 'author', 'edition']
+    _valid_directions = ['asc', 'dsc']
 
-    def get_param_index(self, param_name):
-        if param_name.lower() == 'title':
-            return 1
-        elif param_name.lower() == 'author':
-            return 2
-        elif param_name.lower() == 'edition':
-            return 3
-        else:
-            raise OrderingException('There is no attribute in a book named "{}"'.format(param_name))
-        
+    def sort(self, books, sorting_params):
+
+        '''
+            Since python sorting methods are guaranteed to be stable, we start sorting
+            from the last given parameter to the first. For more information read about
+            'stable sort'.
+        '''
+        for param in reversed(sorting_params):
+            attribute, direction = param.split('_')
+            self.check_valid_params(attribute, direction)
+
+            reverse_direction = (True if direction.lower() == 'dsc' else False)
+            books.sort(key=attrgetter(''.join(['_', attribute.lower()])), reverse=reverse_direction)
             
+        return books
+
+    '''
+        In case an attribute or sorting direction is mistyped in the configuration
+        file, this method will raise an OrderingException with the appropriate message.
+    '''
+    def check_valid_params(self, attribute, direction):
+        if attribute.lower() not in self._valid_attributes:
+            raise OrderingException('"{}" is not a valid book attribute.'.format(attribute))
+        if direction.lower() not in self._valid_directions:
+            raise OrderingException('"{}" is not a valid sorting direction.'.format(direction))
