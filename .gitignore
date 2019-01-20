@@ -1,2 +1,5 @@
 #pycache files
 *.pyc
+
+#vscode debug file
+.vscode

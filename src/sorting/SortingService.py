@@ -1,5 +1,5 @@
 from operator import attrgetter
-from sorting.OrderingException import OrderingException
+from src.sorting.OrderingException import OrderingException
 
 class SortingService:
 
@@ -8,6 +8,9 @@ class SortingService:
 
     def sort(self, books, sorting_params):
 
+        if sorting_params == list():
+            return list()
+        
         '''
             Since python sorting methods are guaranteed to be stable, we start sorting
             from the last given parameter to the first. For more information read about
