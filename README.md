@@ -6,7 +6,7 @@ Esse projeto implementa a resolução do desafio requisitado para a vaga de Esta
 + configparser 3.5.0
 
 ## Instalação de dependencias
-Os pacotes necessários para a execução do código podem ser instalados utilizando um gerenciador de pacotes, como o [pip](https://pip.pypa.io/en/stable/installing/). Os pacotes estão presentes no arquivo de dependências [requirements.txt](hehe) e portanto uma execução do comando `pip install -r requirements.txt`, do diretório raiz do repositório é o suficiente para instalá-los. Após isso, para rodar o programa o usuário basta executar o arquivo Main.py através de uma chamada simples:
+Os pacotes necessários para a execução do código podem ser instalados utilizando um gerenciador de pacotes, como o [pip](https://pip.pypa.io/en/stable/installing/). Os pacotes estão presentes no arquivo de dependências [requirements.txt](https://github.com/JoaoFagundes/sorting-service/blob/master/requirements.txt) e portanto uma execução do comando `pip install -r requirements.txt`, do diretório raiz do repositório é o suficiente para instalá-los. Após isso, para rodar o programa o usuário basta executar o arquivo Main.py através de uma chamada simples:
 ```
   python Main.py
 ```
