@@ -7,9 +7,14 @@ class SortingService:
     _valid_directions = ['asc', 'dsc']
 
     def sort(self, books, sorting_params):
-
+        
+        '''
+            If no params are given in .config file, the sorting process must return
+            an empty books list.
+        '''
         if sorting_params == list():
             return list()
+
         
         '''
             Since python sorting methods are guaranteed to be stable, we start sorting
@@ -25,11 +30,11 @@ class SortingService:
             
         return books
 
-    '''
-        In case an attribute or sorting direction is mistyped in the configuration
-        file, this method will raise an OrderingException with the appropriate message.
-    '''
     def check_valid_params(self, attribute, direction):
+        '''
+            In case an attribute or sorting direction is mistyped in the configuration
+            file, this method will raise an OrderingException with the appropriate message.
+        '''
         if attribute.lower() not in self._valid_attributes:
             raise OrderingException('"{}" is not a valid book attribute.'.format(attribute))
         if direction.lower() not in self._valid_directions:
